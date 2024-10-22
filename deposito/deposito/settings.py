@@ -19,6 +19,8 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+print("POSTGRES_HOST:", os.getenv('POSTGRES_HOST'))
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -29,7 +31,7 @@ SECRET_KEY = 'django-insecure-#z&t&)=fx#@n154x9h&=npomt0&*&t#o9^i6q9sfh+1ety5x@0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dssd-api-grupo14.fly.dev', 'localhost', '127.0.0.1']
 
 
 # Application definition
