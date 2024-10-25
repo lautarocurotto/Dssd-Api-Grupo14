@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from orders.views import RegisterUserAPIView
-from drf_yasg import schema_view
+from drf_yasg_config import schema_view
 
 
 urlpatterns = [
