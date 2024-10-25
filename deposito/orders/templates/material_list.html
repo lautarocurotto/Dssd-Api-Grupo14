@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <h1>Lista de materiales</h1>
+  <ul>
+    {% for material in object_list %}
+      <li>
+        {{ material.name }} ({{ material.quantity }})
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

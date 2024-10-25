@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <h1>Crear orden</h1>
+  <form method="post">
+    {% csrf_token %}
+    <label>Material:</label>
+    <select name="material">
+      {% for material in materials %}
+        <option value="{{ material.id }}">{{ material.name }}</option>
+      {% endfor %}
+    </select>
+    <label>Cantidad:</label>
+    <input type="number" name="quantity">
+    <button type="submit">Crear</button>
+  </form>
+{% endblock %}

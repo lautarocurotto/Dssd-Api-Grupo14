@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <h1>Order List</h1>
+  <ul>
+    {% for order in object_list %}
+      <li>
+        {{ order.id }} - {{ order.material_name }} ({{ order.quantity }})
+        {% if order.reserved %}
+          <span style="background-color: red; color: white; padding: 2px 5px; border-radius: 5px;">Reservado</span>
+          {% if order.delivered %}
+            <span style="background-color: green; color: white; padding: 2px 5px; border-radius: 5px;">Entregado</span>
+          {% else %}
+            <span style="background-color: grey; color: white; padding: 2px 5px; border-radius: 5px;">No Entregado</span>
+            <form action="{% url 'deliver_order' order.id %}" method="post">
+              <button class="btn-entregar" type="submit">Entregar</button>
+            </form>
+          {% endif %}
+        {% else %}
+          <span style="background-color: grey; color: white; padding: 2px 5px; border-radius: 5px;">No Reservado</span>
+          <form action="{% url 'reserve_order' order.id %}" method="post">
+            <button class="btn-reservar" type="submit">Reservar</button>
+          </form>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

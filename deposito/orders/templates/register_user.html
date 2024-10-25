@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <h1>Registrar usuario</h1>
+  <form method="post">
+    {% csrf_token %}
+    <label>Nombre de usuario:</label>
+    <input type="text" name="username">
+    <label>Correo electrónico:</label>
+    <input type="email" name="email">
+    <label>Contraseña:</label>
+    <input type="password" name="password">
+    <button type="submit">Registrar</button>
+  </form>
+{% endblock %}

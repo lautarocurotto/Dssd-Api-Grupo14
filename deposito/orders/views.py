@@ -2,19 +2,23 @@ from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.renderers import TemplateHTMLRenderer
 from .models import Order, Material, Deposit
 from .serializers import OrderSerializer, DepositSerializer, MaterialSerializer, UserSerializer, MaterialSerializer
-
 
 class MaterialListAPIView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Material.objects.all()
     serializer_class = MaterialSerializer
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'material_list.html'
 
 class OrderListView(generics.ListAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permission_classes = [IsAuthenticated]
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'order_list.html'
 
 class ReserveOrderView(APIView):
     permission_classes = [IsAuthenticated]
@@ -30,6 +34,8 @@ class ReserveOrderView(APIView):
 
 class CreateOrderAPIView(APIView):
     permission_classes = [IsAuthenticated]
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'create_order.html'
 
     def post(self, request):
         serializer = OrderSerializer(data=request.data, context={'request': request})
@@ -59,7 +65,15 @@ class DeliverOrderAPIView(APIView):
         material.quantity -= order.quantity
         material.save()
 
+        # Ejecutar el código de la clase RegisterMaterialProviderView
+        register_material_provider(material.name, request)
+
         return Response({"message": "Order delivered successfully"}, status=status.HTTP_200_OK)
+
+def register_material_provider(material_name, request):
+    register_material_provider_view = RegisterMaterialProviderView()
+    request.data['material_name'] = material_name
+    register_material_provider_view.post(request)
 
 class RegisterMaterialProviderView(APIView):
     permission_classes = [IsAuthenticated]
@@ -88,8 +102,10 @@ class RegisterMaterialProviderView(APIView):
         return Response({"message": message}, status=status.HTTP_200_OK)
 
 
-
 class RegisterUserAPIView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'register_user.html'
+
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():

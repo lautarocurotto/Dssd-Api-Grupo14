@@ -7,3 +7,4 @@ sqlparse==0.5.1
 psycopg2>=2.9
 python-dotenv
 gunicorn
+drf-yasg

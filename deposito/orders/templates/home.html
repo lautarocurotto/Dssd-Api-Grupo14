@@ -1,0 +1,6 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <h1>Home</h1>
+    <a href="{% url 'create_order' %}">Crear Orden</a>
+    <a href="{% url 'order_list' %}">Listar Ordenes</a>
+{% endblock %}

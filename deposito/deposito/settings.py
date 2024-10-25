@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'orders',
     'rest_framework',
     'rest_framework_simplejwt',
-
+    'drf_yasg',
 ]
 
 REST_FRAMEWORK = {
