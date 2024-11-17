@@ -10,15 +10,15 @@ class MaterialListAPIView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Material.objects.all()
     serializer_class = MaterialSerializer
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'material_list.html'
+    #renderer_classes = [TemplateHTMLRenderer]
+    #template_name = 'material_list.html'
 
 class OrderListView(generics.ListAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permission_classes = [IsAuthenticated]
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'order_list.html'
+    #renderer_classes = [TemplateHTMLRenderer]
+    #template_name = 'order_list.html'
 
 class ReserveOrderView(APIView):
     permission_classes = [IsAuthenticated]
@@ -34,8 +34,8 @@ class ReserveOrderView(APIView):
 
 class CreateOrderAPIView(APIView):
     permission_classes = [IsAuthenticated]
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'create_order.html'
+    #renderer_classes = [TemplateHTMLRenderer]
+    #template_name = 'create_order.html'
 
     def post(self, request):
         serializer = OrderSerializer(data=request.data, context={'request': request})
@@ -65,8 +65,8 @@ class DeliverOrderAPIView(APIView):
         material.quantity -= order.quantity
         material.save()
 
-        # Ejecutar el código de la clase RegisterMaterialProviderView
-        register_material_provider(material.name, request)
+        ## Ejecutar el código de la clase RegisterMaterialProviderView
+        #register_material_provider(material.name, request)
 
         return Response({"message": "Order delivered successfully"}, status=status.HTTP_200_OK)
 
@@ -103,8 +103,8 @@ class RegisterMaterialProviderView(APIView):
 
 
 class RegisterUserAPIView(APIView):
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'register_user.html'
+    #renderer_classes = [TemplateHTMLRenderer]
+    #template_name = 'register_user.html'
 
     def post(self, request):
         serializer = UserSerializer(data=request.data)
