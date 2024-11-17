@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-#z&t&)=fx#@n154x9h&=npomt0&*&t#o9^i6q9sfh+1ety5x@0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['dssd-api-grupo14.fly.dev', 'localhost', '127.0.0.1','dssd-api-grupo14.onrender.com']
+ALLOWED_HOSTS = ['dssd-api-grupo14.fly.dev', 'localhost', '127.0.0.1','dssd-api-grupo14.onrender.com', 'dssd-api-grupo14-e0s1.onrender.com']
 
 
 # Application definition
